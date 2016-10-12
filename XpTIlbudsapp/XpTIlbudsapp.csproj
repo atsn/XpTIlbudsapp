@@ -101,6 +101,7 @@
     <Compile Include="IWebUri.cs" />
     <Compile Include="Kaede.cs" />
     <Compile Include="Kampagne.cs" />
+    <Compile Include="KampagneMedAltInfo.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
@@ -115,6 +116,7 @@
     <Compile Include="Tilbud.cs" />
     <Compile Include="TilbudKampagne.cs" />
     <Compile Include="Vare.cs" />
+    <Compile Include="VareMedKampanie.cs" />
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest">
