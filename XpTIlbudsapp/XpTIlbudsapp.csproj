@@ -98,6 +98,7 @@
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Model\Model.cs" />
     <Compile Include="Pages\Indkoeb.xaml.cs">
       <DependentUpon>Indkoeb.xaml</DependentUpon>
     </Compile>
@@ -105,6 +106,7 @@
       <DependentUpon>Tilbud.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModel\ViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest">
