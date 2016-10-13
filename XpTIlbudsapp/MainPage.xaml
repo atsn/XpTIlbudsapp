@@ -10,7 +10,7 @@
     mc:Ignorable="d">
     <Interactivity:Interaction.Behaviors>
         <Core:EventTriggerBehavior EventName="Loaded">
-            <Core:InvokeCommandAction/>
+            <Core:InvokeCommandAction Command="{Binding LoadInkøbslisteCommand}"/>
         </Core:EventTriggerBehavior>
     </Interactivity:Interaction.Behaviors>
     <Page.DataContext>
