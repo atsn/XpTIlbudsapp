@@ -38,6 +38,7 @@
                 </Core:EventTriggerBehavior>
             </Interactivity:Interaction.Behaviors>
         </Button>
+        <ProgressRing HorizontalAlignment="Stretch" Margin="122,253,122,271" VerticalAlignment="Stretch" d:LayoutOverrides="LeftPosition, RightPosition, TopPosition, BottomPosition"/>
 
     </Grid>
 </Page>
