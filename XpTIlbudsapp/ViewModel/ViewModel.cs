@@ -26,7 +26,7 @@ namespace XpTIlbudsapp.ViewModel
         private double _totalIndkøbsliste;
         private RelayCommand _addtilbudtoinkøbslisteCommand;
         private RelayCommand _beregnTotalCommand;
-        private static ObservableCollection<VareMedTilbud> _inkøbsliste = new ObservableCollection<VareMedTilbud>();
+        private static ObservableCollection<VareMedTilbud> _inkøbsliste;
 
         public bool isrunning
         {
@@ -117,6 +117,7 @@ namespace XpTIlbudsapp.ViewModel
             AddtilbudtoinkøbslisteCommand = new RelayCommand(addtilbudtoinkøbsliste);
             BeregnTotalCommand = new RelayCommand(beregntotal);
             LoadInkøbslisteCommand = new RelayCommand(LoadInkøbsliste);
+            Inkøbsliste = new ObservableCollection<VareMedTilbud>();
         }
 
         public async void callsøgetilbud()
@@ -180,6 +181,7 @@ namespace XpTIlbudsapp.ViewModel
                 {
                     KampagneVare.Add(vareMedTilbud);
                 }
+                isrunning = false;
             }
             catch (Exception e)
             {
