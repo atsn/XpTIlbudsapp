@@ -120,6 +120,7 @@
       <DependentUpon>IndkoebsListe.xaml</DependentUpon>
     </Compile>
     <Compile Include="PersistencyService.cs" />
+    <Compile Include="Properties\Annotations.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ServerErrorException.cs" />
     <Compile Include="Model\Tilbud.cs" />
