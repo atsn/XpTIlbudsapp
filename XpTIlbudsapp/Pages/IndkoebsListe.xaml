@@ -1,10 +1,11 @@
 ﻿<Page
-    x:Class="XpTIlbudsapp.Pages.Tilbud"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:XpTIlbudsapp.Pages"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:Interactivity="using:Microsoft.Xaml.Interactivity" xmlns:Core="using:Microsoft.Xaml.Interactions.Core"
+    x:Class="XpTIlbudsapp.Pages.Tilbud"
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
@@ -12,9 +13,16 @@
             <ListView x:Name="listView" Margin="24,77,26,0" Width="310" Height="500" Background="#FF898989" VerticalAlignment="Top"/>
             <Button x:Name="Fjern" Content="Fjern" VerticalAlignment="Bottom" Width="120" HorizontalAlignment="Left" Margin="24,0,0,25" Background="#FF898989"/>
             <TextBlock x:Name="textBlock" Margin="0,0,26,31" TextWrapping="Wrap" Text="Total: dkk" VerticalAlignment="Bottom" FocusVisualSecondaryBrush="#99FFFFFF" HorizontalAlignment="Right"/>
-            <TextBlock x:Name="textBlock1" HorizontalAlignment="Center" Height="62" Margin="52,0,26,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="282" Text="Indkøbsliste" FontSize="48"/>
+            <TextBlock x:Name="textBlock1" Height="62" Margin="68,10,10,0" TextWrapping="Wrap" VerticalAlignment="Top" Text="Indkøbsliste" FontSize="48" d:LayoutOverrides="LeftPosition, RightPosition"/>
 
         </Grid>
+        <Button x:Name="button" Margin="24,20,0,0" Style="{StaticResource NavigationBackButtonNormalStyle}" VerticalAlignment="Top" d:LayoutOverrides="Width, Height">
+            <Interactivity:Interaction.Behaviors>
+                <Core:EventTriggerBehavior EventName="Click">
+                    <Core:NavigateToPageAction TargetPage="XpTIlbudsapp.MainPage"/>
+                </Core:EventTriggerBehavior>
+            </Interactivity:Interaction.Behaviors>
+        </Button>
 
     </Grid>
 </Page>

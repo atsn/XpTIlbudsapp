@@ -95,18 +95,24 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Assets\RelayCommand.cs" />
-    <Compile Include="facade.cs" />
-    <Compile Include="Handler.cs" />
+    <Compile Include="Model\RelayCommand.cs" />
+    <Compile Include="Facade\facade.cs" />
+    <Compile Include="Handler\Handler.cs" />
     <Compile Include="HttpErrorException.cs" />
     <Compile Include="IWebUri.cs" />
-    <Compile Include="Kaede.cs" />
-    <Compile Include="Kampagne.cs" />
-    <Compile Include="KampagneMedAltInfo.cs" />
+    <Compile Include="Model\Kaede.cs" />
+    <Compile Include="Model\Kampagne.cs" />
+    <Compile Include="Model\KampagneMedAltInfo.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Model\Model.cs" />
+    <Compile Include="Pages\Kampagne.xaml.cs">
+      <DependentUpon>Kampagne.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Kaede.xaml.cs">
+      <DependentUpon>Kaede.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\Tilbud.xaml.cs">
       <DependentUpon>Tilbud.xaml</DependentUpon>
     </Compile>
@@ -116,11 +122,11 @@
     <Compile Include="PersistencyService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ServerErrorException.cs" />
-    <Compile Include="Tilbud.cs" />
-    <Compile Include="TilbudKampagne.cs" />
-    <Compile Include="Vare.cs" />
+    <Compile Include="Model\Tilbud.cs" />
+    <Compile Include="Model\TilbudKampagne.cs" />
+    <Compile Include="Model\Vare.cs" />
     <Compile Include="ViewModel\ViewModel_OpretTilbud.cs" />
-    <Compile Include="VareMedKampanie.cs" />
+    <Compile Include="Model\VareMedKampanie.cs" />
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest">
@@ -145,6 +151,14 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Page Include="MainPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\Kampagne.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\Kaede.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
