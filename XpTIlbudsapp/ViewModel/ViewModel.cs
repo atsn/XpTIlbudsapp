@@ -10,7 +10,7 @@ using Windows.ApplicationModel.Appointments.AppointmentsProvider;
 using Windows.UI.Popups;
 using XpTIlbudsapp.Annotations;
 
-namespace XpTIlbudsapp.ViewModel 
+namespace XpTIlbudsapp.ViewModel
 {
     class ViewModel : INotifyPropertyChanged
     {
@@ -31,7 +31,7 @@ namespace XpTIlbudsapp.ViewModel
         public bool isrunning
         {
             get { return _isrunning; }
-            set { _isrunning = value; OnPropertyChanged();}
+            set { _isrunning = value; OnPropertyChanged(); }
         }
 
         public ObservableCollection<VareMedTilbud> Tilbudsvarer
@@ -207,6 +207,22 @@ namespace XpTIlbudsapp.ViewModel
                     MessageDialog message = new MessageDialog("Vælg venligst vare");
                     await message.ShowAsync();
                 }
+                isrunning = false;
+            }
+            catch (Exception e)
+            {
+                MessageDialog message = new MessageDialog(e + e.Message);
+                await message.ShowAsync();
+                isrunning = false;
+            }
+        }
+
+        public async void LoadInkøbsliste()
+        {
+            try
+            {
+                isrunning = true;
+                Inkøbsliste = await Persistency.PersistencyService.LoadNotesFromJsonAsync();
                 isrunning = false;
             }
             catch (Exception e)
