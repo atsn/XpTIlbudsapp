@@ -5,8 +5,13 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:Interactivity="using:Microsoft.Xaml.Interactivity" xmlns:Core="using:Microsoft.Xaml.Interactions.Core"
+    xmlns:ViewModel="using:XpTIlbudsapp.ViewModel"
     x:Class="XpTIlbudsapp.Pages.Kaede"
     mc:Ignorable="d">
+
+    <Page.DataContext>
+        <ViewModel:ViewModel/>
+    </Page.DataContext>
 
     <Grid Background="#FF666666">
         <ListView x:Name="listView" Margin="24,77,26,0" Width="310" Height="456" Background="#FF898989" VerticalAlignment="Top" BorderBrush="#FF7A7A7A" BorderThickness="2" IsSynchronizedWithCurrentItem="False"/>
