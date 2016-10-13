@@ -58,7 +58,7 @@ namespace XpTIlbudsapp
             catch (Exception e)
             {
                 MessageDialog errorbox = new MessageDialog(e + e.Message);
-                errorbox.ShowAsync();
+                await errorbox.ShowAsync();
                 return null;
             }
 
@@ -108,7 +108,7 @@ namespace XpTIlbudsapp
             catch (Exception e)
             {
                 MessageDialog errorbox = new MessageDialog(e + e.Message);
-                errorbox.ShowAsync();
+                await errorbox.ShowAsync();
                 return null;
             }
 
