@@ -82,6 +82,7 @@ namespace XpTIlbudsapp.ViewModel
             set { _søgTilbudCommand = value; OnPropertyChanged(); }
         }
 
+        public RelayCommand LoadInkøbslisteCommand  { get; set; }
         public string Søgeord
         {
             get { return _søgeord; }
@@ -115,6 +116,7 @@ namespace XpTIlbudsapp.ViewModel
             SøgTilbudCommand = new RelayCommand(callsøgetilbud);
             AddtilbudtoinkøbslisteCommand = new RelayCommand(addtilbudtoinkøbsliste);
             BeregnTotalCommand = new RelayCommand(beregntotal);
+            LoadInkøbslisteCommand = new RelayCommand(LoadInkøbsliste);
         }
 
         public async void callsøgetilbud()
