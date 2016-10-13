@@ -125,7 +125,7 @@
     <Compile Include="Model\Tilbud.cs" />
     <Compile Include="Model\TilbudKampagne.cs" />
     <Compile Include="Model\Vare.cs" />
-    <Compile Include="ViewModel\ViewModel_OpretTilbud.cs" />
+    <Compile Include="ViewModel\ViewModel.cs" />
     <Compile Include="Model\VareMedKampanie.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -9,7 +9,7 @@ using Windows.UI.Popups;
 
 namespace XpTIlbudsapp.ViewModel
 {
-    class ViewModel_OpretTilbud
+    class ViewModel
     {
         public bool isrunning { get; set; }
         public ObservableCollection<VareMedTilbud> Tilbudsvarer { get; set; }
@@ -28,7 +28,7 @@ namespace XpTIlbudsapp.ViewModel
         public RelayCommand AddtilbudtoinkøbslisteCommand { get; set; }
         public RelayCommand BeregnTotalCommand { get; set; }
 
-        public ViewModel_OpretTilbud()
+        public ViewModel()
         {
             Tilbudsvarer = new ObservableCollection<VareMedTilbud>();
             KampagneVare = new ObservableCollection<KampagneMedAltInfo>();
