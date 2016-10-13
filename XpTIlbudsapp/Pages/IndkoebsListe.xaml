@@ -9,10 +9,10 @@
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <Grid Background="#FF666666">
-            <ListView x:Name="listView" Margin="24,77,26,0" Width="310" Height="500" Background="#FF898989" VerticalAlignment="Top" SelectionChanged="listView_SelectionChanged"/>
+            <ListView x:Name="listView" Margin="24,77,26,0" Width="310" Height="500" Background="#FF898989" VerticalAlignment="Top"/>
             <Button x:Name="Fjern" Content="Fjern" VerticalAlignment="Bottom" Width="120" HorizontalAlignment="Left" Margin="24,0,0,25" Background="#FF898989"/>
             <TextBlock x:Name="textBlock" Margin="0,0,26,31" TextWrapping="Wrap" Text="Total: dkk" VerticalAlignment="Bottom" FocusVisualSecondaryBrush="#99FFFFFF" HorizontalAlignment="Right"/>
-            <TextBlock x:Name="textBlock1" HorizontalAlignment="Center" Height="62" Margin="52,0,26,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="282" SelectionChanged="textBlock1_SelectionChanged" Text="Indkøbsliste" FontSize="48"/>
+            <TextBlock x:Name="textBlock1" HorizontalAlignment="Center" Height="62" Margin="52,0,26,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="282" Text="Indkøbsliste" FontSize="48"/>
 
         </Grid>
 
