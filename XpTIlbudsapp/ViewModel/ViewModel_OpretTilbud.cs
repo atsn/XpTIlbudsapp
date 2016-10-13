@@ -150,7 +150,7 @@ namespace XpTIlbudsapp.ViewModel
                 }
                 isrunning = false;
             }
-            
+
             catch (Exception e)
             {
                 MessageDialog message = new MessageDialog(e + e.Message);
@@ -162,7 +162,7 @@ namespace XpTIlbudsapp.ViewModel
 
     }
 }
-}
+
 
 
 
