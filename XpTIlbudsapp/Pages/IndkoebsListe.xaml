@@ -10,10 +10,10 @@
     mc:Ignorable="d">
     <Interactivity:Interaction.Behaviors>
         <Core:EventTriggerBehavior EventName="Loaded">
-            <Core:InvokeCommandAction Command="{Binding BeregnTotalCommand}"/>
+            <Core:InvokeCommandAction Command="{Binding LoadinkøbslistevisCommand}"/>
         </Core:EventTriggerBehavior>
         <Core:EventTriggerBehavior EventName="Loaded">
-            <Core:InvokeCommandAction Command="{Binding LoadInkøbslisteCommand}"/>
+            <Core:InvokeCommandAction Command="{Binding BeregnTotalCommand}"/>
         </Core:EventTriggerBehavior>
     </Interactivity:Interaction.Behaviors>
 
