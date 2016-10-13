@@ -6,7 +6,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:Interactivity="using:Microsoft.Xaml.Interactivity" xmlns:Core="using:Microsoft.Xaml.Interactions.Core"
     xmlns:ViewModel="using:XpTIlbudsapp.ViewModel"
-    x:Class="XpTIlbudsapp.Pages.Indkoeb"
+    x:Class="XpTIlbudsapp.Pages.Tilbud"
     mc:Ignorable="d">
     <Interactivity:Interaction.Behaviors>
         <Core:EventTriggerBehavior EventName="Loaded">
