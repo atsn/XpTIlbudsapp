@@ -8,17 +8,21 @@
     xmlns:ViewModel="using:XpTIlbudsapp.ViewModel"
     x:Class="XpTIlbudsapp.Pages.Kampagne"
     mc:Ignorable="d">
+    <Interactivity:Interaction.Behaviors>
+        <Core:EventTriggerBehavior EventName="Loaded">
+            <Core:InvokeCommandAction Command="{Binding SøgKampagneCommand}"/>
+        </Core:EventTriggerBehavior>
+    </Interactivity:Interaction.Behaviors>
 
     <Page.DataContext>
         <ViewModel:ViewModel/>
     </Page.DataContext>
 
     <Grid Background="#FF666666">
-        <ListView x:Name="listView" Margin="24,77,26,0" Width="310" Height="456" Background="#FF898989" VerticalAlignment="Top" BorderBrush="#FF7A7A7A" BorderThickness="2" IsSynchronizedWithCurrentItem="False"/>
-        <Button x:Name="Tilføj" Content="Tilføj" VerticalAlignment="Bottom" Width="120" HorizontalAlignment="Left" Margin="24,0,0,25" Background="#FF898989"/>
+        <ListView x:Name="listView" Margin="24,77,26,0" Width="310" Height="456" Background="#FF898989" VerticalAlignment="Top" BorderBrush="#FF7A7A7A" BorderThickness="2" IsSynchronizedWithCurrentItem="False" ItemsSource="{Binding KampagneVare, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding SelectetKampagne, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
         <TextBlock x:Name="textBlock1" Height="62" Margin="76,10,76,0" TextWrapping="Wrap" VerticalAlignment="Top" FontFamily="Baskerville Old Face" Text="Kampagne" FontSize="48" d:LayoutOverrides="LeftPosition, RightPosition"/>
-        <Button x:Name="Søg" Content="Søg" VerticalAlignment="Bottom" Width="120" HorizontalAlignment="Right" Margin="0,0,26,25" Background="#FF898989"/>
-        <TextBox x:Name="textBox" Height="45" Margin="24,0,26,62" TextWrapping="Wrap" Text="" VerticalAlignment="Bottom" PlaceholderText="Søg"/>
+        <Button x:Name="Søg" Content="Søg" VerticalAlignment="Bottom" Width="120" HorizontalAlignment="Right" Margin="0,0,26,25" Background="#FF898989" Command="{Binding SøgKampagneCommand}"/>
+        <TextBox x:Name="textBox" Height="45" Margin="24,0,26,62" TextWrapping="Wrap" Text="{Binding Søgeord, Mode=TwoWay}" VerticalAlignment="Bottom" PlaceholderText="Søg"/>
         <Button x:Name="button" Margin="24,20,0,0" Style="{StaticResource NavigationBackButtonNormalStyle}" VerticalAlignment="Top" d:LayoutOverrides="Width, Height">
             <Interactivity:Interaction.Behaviors>
                 <Core:EventTriggerBehavior EventName="Click">
@@ -26,7 +30,7 @@
                 </Core:EventTriggerBehavior>
             </Interactivity:Interaction.Behaviors>
         </Button>
-        <ProgressRing HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="122,232,122,292" d:LayoutOverrides="LeftPosition, RightPosition, TopPosition, BottomPosition"/>
+        <ProgressRing HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="122,232,122,292" d:LayoutOverrides="LeftPosition, RightPosition, TopPosition, BottomPosition" IsActive="{Binding isrunning}"/>
 
     </Grid>
 </Page>
