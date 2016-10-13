@@ -22,5 +22,10 @@ namespace XpTIlbudsapp
             Startdate = startdate;
             SlutDate = slutDate;
         }
+
+        public override string ToString()
+        {
+            return $"{nameof(Pris)}: {Pris}, {nameof(Varenavn)}: {Varenavn}, {nameof(KædeNavn)}: {KædeNavn}, {nameof(Startdate)}: {Startdate}, {nameof(SlutDate)}: {SlutDate}";
+        }
     }
 }
