@@ -6,7 +6,13 @@ using System.Threading.Tasks;
 
 namespace XpTIlbudsapp.ViewModel
 {
-    class ViewModel
+    class ViewModel_OpretTilbud
     {
+
+        
+
+
+
+
     }
 }
