@@ -1,16 +1,43 @@
 ﻿<Page
-    x:Class="XpTIlbudsapp.MainPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:XpTIlbudsapp"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:Interactivity="using:Microsoft.Xaml.Interactivity" xmlns:Core="using:Microsoft.Xaml.Interactions.Core"
+    x:Class="XpTIlbudsapp.MainPage"
     mc:Ignorable="d">
 
     <Grid Background="#FF666666">
-        <Button x:Name="Tilbud" Content="Tilbud" Margin="45,104,0,0" VerticalAlignment="Top" Width="120"/>
-        <Button x:Name="Indkoeb" Content="Indkøb" Margin="0,104,45,0" VerticalAlignment="Top" HorizontalAlignment="Right" Width="120"/>
+        <Button x:Name="Tilbud" Content="Tilbud" Margin="45,104,0,0" VerticalAlignment="Top" Width="120">
+            <Interactivity:Interaction.Behaviors>
+                <Core:EventTriggerBehavior EventName="Click">
+                    <Core:NavigateToPageAction TargetPage="Pages.Tilbud"/>
+                </Core:EventTriggerBehavior>
+            </Interactivity:Interaction.Behaviors>
+        </Button>
+        <Button x:Name="Indkoeb" Content="Indkøb" Margin="0,104,45,0" VerticalAlignment="Top" HorizontalAlignment="Right" Width="120">
+            <Interactivity:Interaction.Behaviors>
+                <Core:EventTriggerBehavior EventName="Click">
+                    <Core:NavigateToPageAction TargetPage="Pages.Indkoeb"/>
+                </Core:EventTriggerBehavior>
+            </Interactivity:Interaction.Behaviors>
+        </Button>
         <TextBlock x:Name="textBlock" Height="36" Margin="120,10,112,0" TextWrapping="Wrap" Text="XpTilbud" VerticalAlignment="Top" Foreground="#FFC9C9C9" FontSize="32" d:LayoutOverrides="LeftPosition, RightPosition"/>
+        <Button x:Name="Kaede" Content="Kæde" Margin="45,141,0,0" VerticalAlignment="Top" Width="120">
+            <Interactivity:Interaction.Behaviors>
+                <Core:EventTriggerBehavior EventName="Click">
+                    <Core:NavigateToPageAction TargetPage="Pages.Kaede"/>
+                </Core:EventTriggerBehavior>
+            </Interactivity:Interaction.Behaviors>
+        </Button>
+        <Button x:Name="kampagne" Content="Kampagne" Margin="45,178,0,0" VerticalAlignment="Top" Width="120">
+            <Interactivity:Interaction.Behaviors>
+                <Core:EventTriggerBehavior EventName="Click">
+                    <Core:NavigateToPageAction TargetPage="Pages.Kampagne"/>
+                </Core:EventTriggerBehavior>
+            </Interactivity:Interaction.Behaviors>
+        </Button>
 
     </Grid>
 </Page>
