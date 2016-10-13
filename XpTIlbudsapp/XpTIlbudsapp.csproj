@@ -95,6 +95,7 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Assets\RelayCommand.cs" />
     <Compile Include="facade.cs" />
     <Compile Include="Handler.cs" />
     <Compile Include="HttpErrorException.cs" />
