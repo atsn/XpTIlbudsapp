@@ -1,32 +1,110 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using Windows.ApplicationModel.Appointments.AppointmentsProvider;
 using Windows.UI.Popups;
+using XpTIlbudsapp.Annotations;
 
 namespace XpTIlbudsapp.ViewModel
 {
-    class ViewModel
+    class ViewModel : INotifyPropertyChanged
     {
-        public bool isrunning { get; set; }
-        public ObservableCollection<VareMedTilbud> Tilbudsvarer { get; set; }
-        public ObservableCollection<KampagneMedAltInfo> KampagneVare { get; set; }
+        private bool _isrunning;
+        private ObservableCollection<VareMedTilbud> _tilbudsvarer;
+        private ObservableCollection<KampagneMedAltInfo> _kampagneVare;
+        private VareMedTilbud _selectvare;
+        private KampagneMedAltInfo _selectetKampagne;
+        private RelayCommand _søgKædeCommand;
+        private RelayCommand _søgKampagneCommand;
+        private RelayCommand _søgTilbudCommand;
+        private string _søgeord;
+        private double _totalIndkøbsliste;
+        private RelayCommand _addtilbudtoinkøbslisteCommand;
+        private RelayCommand _beregnTotalCommand;
+        private static ObservableCollection<VareMedTilbud> _inkøbsliste = new ObservableCollection<VareMedTilbud>();
 
-        public static ObservableCollection<VareMedTilbud> Inkøbsliste { get; set; } =
-            new ObservableCollection<VareMedTilbud>();
+        public bool isrunning
+        {
+            get { return _isrunning; }
+            set { _isrunning = value; OnPropertyChanged(); }
+        }
 
-        public VareMedTilbud selectvare { get; set; }
-        public KampagneMedAltInfo SelectetKampagne { get; set; }
-        public RelayCommand SøgKædeCommand { get; set; }
-        public RelayCommand SøgKampagneCommand { get; set; }
-        public RelayCommand SøgTilbudCommand { get; set; }
-        public string Søgeord { get; set; }
-        public int TotalIndkøbsliste { get; set; }
-        public RelayCommand AddtilbudtoinkøbslisteCommand { get; set; }
-        public RelayCommand BeregnTotalCommand { get; set; }
+        public ObservableCollection<VareMedTilbud> Tilbudsvarer
+        {
+            get { return _tilbudsvarer; }
+            set { _tilbudsvarer = value; OnPropertyChanged(); }
+        }
+
+        public ObservableCollection<KampagneMedAltInfo> KampagneVare
+        {
+            get { return _kampagneVare; }
+            set { _kampagneVare = value; OnPropertyChanged(); }
+        }
+
+        public static ObservableCollection<VareMedTilbud> Inkøbsliste
+        {
+            get { return _inkøbsliste; }
+            set { _inkøbsliste = value; }
+        }
+
+        public VareMedTilbud selectvare
+        {
+            get { return _selectvare; }
+            set { _selectvare = value; OnPropertyChanged(); }
+        }
+
+        public KampagneMedAltInfo SelectetKampagne
+        {
+            get { return _selectetKampagne; }
+            set { _selectetKampagne = value; OnPropertyChanged(); }
+        }
+
+        public RelayCommand SøgKædeCommand
+        {
+            get { return _søgKædeCommand; }
+            set { _søgKædeCommand = value; OnPropertyChanged(); }
+        }
+
+        public RelayCommand SøgKampagneCommand
+        {
+            get { return _søgKampagneCommand; }
+            set { _søgKampagneCommand = value; OnPropertyChanged(); }
+        }
+
+        public RelayCommand SøgTilbudCommand
+        {
+            get { return _søgTilbudCommand; }
+            set { _søgTilbudCommand = value; OnPropertyChanged(); }
+        }
+
+        public string Søgeord
+        {
+            get { return _søgeord; }
+            set { _søgeord = value; OnPropertyChanged(); }
+        }
+
+        public double TotalIndkøbsliste
+        {
+            get { return _totalIndkøbsliste; }
+            set { _totalIndkøbsliste = value; OnPropertyChanged(); }
+        }
+
+        public RelayCommand AddtilbudtoinkøbslisteCommand
+        {
+            get { return _addtilbudtoinkøbslisteCommand; }
+            set { _addtilbudtoinkøbslisteCommand = value; OnPropertyChanged(); }
+        }
+
+        public RelayCommand BeregnTotalCommand
+        {
+            get { return _beregnTotalCommand; }
+            set { _beregnTotalCommand = value; OnPropertyChanged(); }
+        }
 
         public ViewModel()
         {
@@ -139,6 +217,22 @@ namespace XpTIlbudsapp.ViewModel
             }
         }
 
+        public async void LoadInkøbsliste()
+        {
+            try
+            {
+                isrunning = true;
+                Inkøbsliste = await Persistency.PersistencyService.LoadNotesFromJsonAsync();
+                isrunning = false;
+            }
+            catch (Exception e)
+            {
+                MessageDialog message = new MessageDialog(e + e.Message);
+                await message.ShowAsync();
+                isrunning = false;
+            }
+        }
+
         public async void beregntotal()
         {
             isrunning = true;
@@ -160,6 +254,13 @@ namespace XpTIlbudsapp.ViewModel
 
         }
 
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        [NotifyPropertyChangedInvocator]
+        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
     }
 }
 
