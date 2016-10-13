@@ -82,7 +82,7 @@ namespace XpTIlbudsapp.ViewModel
             set { _søgTilbudCommand = value; OnPropertyChanged(); }
         }
 
-        public RelayCommand LoadInkøbslisteCommand  { get; set; }
+        public RelayCommand LoadInkøbslisteCommand { get; set; }
         public string Søgeord
         {
             get { return _søgeord; }
@@ -124,6 +124,8 @@ namespace XpTIlbudsapp.ViewModel
             isrunning = true;
             try
             {
+                Tilbudsvarer.Clear();
+
                 IEnumerable<VareMedTilbud> Tilbudsvarerlist = await Handler.søgetilbud(Søgeord);
                 foreach (var vareMedTilbud in Tilbudsvarerlist)
                 {
@@ -144,6 +146,7 @@ namespace XpTIlbudsapp.ViewModel
 
         public async void callsøgekæde()
         {
+            Tilbudsvarer.Clear();
             try
             {
                 isrunning = true;
@@ -153,6 +156,7 @@ namespace XpTIlbudsapp.ViewModel
                 {
                     Tilbudsvarer.Add(vareMedTilbud);
                 }
+                isrunning = false;
             }
             catch (Exception e)
             {
@@ -168,6 +172,7 @@ namespace XpTIlbudsapp.ViewModel
         {
             try
             {
+                KampagneVare.Clear();
                 isrunning = true;
                 IEnumerable<KampagneMedAltInfo> Tilbudsvarerlist = await Handler.søgekampagne(Søgeord);
 
