@@ -12,7 +12,7 @@ namespace XpTIlbudsapp
     class Handler
     {
 
-        public static IEnumerable<VareMedKampanie> søgetilbud(string søgeord)
+        public static IEnumerable<VareMedTilbud> søgetilbud(string søgeord)
 
         {
 
@@ -46,7 +46,7 @@ namespace XpTIlbudsapp
                 var tilbudslistemedkæde = from t in tilbudsliste
                     join k in kæde on t.Fk_Kaede_ID equals k.Kaede_ID
                     where t.Start_Dato < DateTime.Now && t.Slut_Dato > DateTime.Now
-                    select new VareMedKampanie(t.Pris, t.varenavn, k.Navn, t.Start_Dato, t.Slut_Dato);
+                    select new VareMedTilbud(t.Pris, t.varenavn, k.Navn, t.Start_Dato, t.Slut_Dato);
 
                 return tilbudslistemedkæde;
 
@@ -63,7 +63,56 @@ namespace XpTIlbudsapp
             }
 
         }
+        public static IEnumerable<VareMedTilbud> søgeKælde(string søgeord)
 
+        {
+
+
+            try
+            {
+                var tildbud = facade.GetListAsync(new Tilbud()).Result;
+                var kæde = facade.GetListAsync(new Kaede()).Result;
+                var Vare = facade.GetListAsync(new Vare()).Result;
+
+
+
+
+                if (søgeord == null)
+                {
+                    søgeord = "";
+                }
+
+
+
+                var SøgteKæde = from v in kæde where (v.Navn.ToLower().Contains(søgeord)) select v;
+
+
+
+                var tilbudsliste = from s in SøgteKæde
+                                   join t in tildbud on s.Kaede_ID equals t.Fk_Kaede_ID
+                                   select new { kædenavn = s.Navn, t.Fk_Vare_ID, t.Fk_Kaede_ID, t.Pris, t.Slut_Dato, t.Start_Dato };
+
+                var tilbudliste2 = from s in tilbudsliste
+                    join v in Vare on s.Fk_Vare_ID equals v.Vare_ID
+                    select new VareMedTilbud(s.Pris, v.Navn, s.kædenavn, s.Start_Dato, s.Slut_Dato);
+
+               
+
+                return tilbudliste2;
+
+
+
+
+
+            }
+            catch (Exception e)
+            {
+                MessageDialog errorbox = new MessageDialog(e + e.Message);
+                errorbox.ShowAsync();
+                return null;
+            }
+
+        }
         public static IEnumerable<KampagneMedAltInfo> søgekampagne(string søgeord)
         {
             var tildbud = facade.GetListAsync(new Tilbud()).Result;
@@ -109,32 +158,12 @@ namespace XpTIlbudsapp
                     k.i.Slut_Dato);
                 
 
-            List<string> kampanienavne = new List<string>();
-
-            foreach (var tilbud in kampanieliste4)
-            {
-                if (!kampanienavne.Contains(tilbud.Kædenavn))
-                {
-                    kampanienavne.Add(tilbud.Kædenavn);
-                }
-
-                return kampanieliste4
-                //    Console.WriteLine("KampanieNavn: " + tilbud.Kampagnenavn + "\n" + "Varenavn: " + tilbud.VareNavn + "\n" + "Pris: " + tilbud.Pris + "\n" + "Butik: " + tilbud.Kædenavn + "\n" + "Fra og Med: " + tilbud.Stardato + "\n" + "Til og med: " + tilbud.Slutdato + "\n");
-                //}
-
-
-
-
-
-
-
-
-
-
-
-
-            }
+          
+                return kampanieliste4;
+               
         }
+
+      
     }
 }
 
