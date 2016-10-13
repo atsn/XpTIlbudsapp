@@ -27,6 +27,7 @@ namespace XpTIlbudsapp.ViewModel
         private RelayCommand _addtilbudtoinkøbslisteCommand;
         private RelayCommand _beregnTotalCommand;
         private ObservableCollection<VareMedTilbud> _inkøbslistevis;
+        private RelayCommand _loadinkøbslistevisCommand;
         private static ObservableCollection<VareMedTilbud> _inkøbsliste;
 
         public ObservableCollection<VareMedTilbud> Inkøbslistevis
@@ -69,6 +70,12 @@ namespace XpTIlbudsapp.ViewModel
         {
             get { return _selectetKampagne; }
             set { _selectetKampagne = value; OnPropertyChanged(); }
+        }
+
+        public RelayCommand LoadinkøbslistevisCommand
+        {
+            get { return _loadinkøbslistevisCommand; }
+            set { _loadinkøbslistevisCommand = value; OnPropertyChanged();}
         }
 
         public RelayCommand SøgKædeCommand
@@ -126,6 +133,7 @@ namespace XpTIlbudsapp.ViewModel
             LoadInkøbslisteCommand = new RelayCommand(LoadInkøbsliste);
             Inkøbsliste = new ObservableCollection<VareMedTilbud>();
             Inkøbslistevis = new ObservableCollection<VareMedTilbud>();
+            LoadinkøbslistevisCommand = new RelayCommand(loeadinkøbslistevis);
         }
 
         public async void callsøgetilbud()
@@ -271,7 +279,7 @@ namespace XpTIlbudsapp.ViewModel
 
         }
 
-        public void loeadinkøbsliste()
+        public void loeadinkøbslistevis()
         {
             foreach (var vareMedTilbud in Inkøbsliste)
             {
