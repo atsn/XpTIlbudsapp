@@ -12,16 +12,16 @@ namespace XpTIlbudsapp
     class Handler
     {
 
-        public static IEnumerable<VareMedTilbud> søgetilbud(string søgeord)
+        public static async Task<IEnumerable<VareMedTilbud>> søgetilbud(string søgeord)
 
         {
 
 
             try
             {
-                var tildbud = facade.GetListAsync(new Tilbud()).Result;
-                var kæde = facade.GetListAsync(new Kaede()).Result;
-                var Vare = facade.GetListAsync(new Vare()).Result;
+                var tildbud = await facade.GetListAsync(new Tilbud());
+                var kæde = await facade.GetListAsync(new Kaede());
+                var Vare = await facade.GetListAsync(new Vare());
 
 
 
@@ -63,16 +63,16 @@ namespace XpTIlbudsapp
             }
 
         }
-        public static IEnumerable<VareMedTilbud> søgeKæde(string søgeord)
+        public static async Task<IEnumerable<VareMedTilbud>> søgeKæde(string søgeord)
 
         {
 
 
             try
             {
-                var tildbud = facade.GetListAsync(new Tilbud()).Result;
-                var kæde = facade.GetListAsync(new Kaede()).Result;
-                var Vare = facade.GetListAsync(new Vare()).Result;
+                var tildbud = await facade.GetListAsync(new Tilbud());
+                var kæde = await facade.GetListAsync(new Kaede());
+                var Vare = await facade.GetListAsync(new Vare());
 
 
 
@@ -113,13 +113,13 @@ namespace XpTIlbudsapp
             }
 
         }
-        public static IEnumerable<KampagneMedAltInfo> søgekampagne(string søgeord)
+        public static async Task<IEnumerable<KampagneMedAltInfo>> søgekampagne(string søgeord)
         {
-            var tildbud = facade.GetListAsync(new Tilbud()).Result;
-            var kæde = facade.GetListAsync(new Kaede()).Result;
-            var Vare = facade.GetListAsync(new Vare()).Result;
-            var Tilbudkampagne = facade.GetListAsync(new TilbudKampagne()).Result;
-            var kampagne = facade.GetListAsync(new Kampagne()).Result;
+            var tildbud = await facade.GetListAsync(new Tilbud());
+            var kæde = await facade.GetListAsync(new Kaede());
+            var Vare = await facade.GetListAsync(new Vare());
+            var Tilbudkampagne = await facade.GetListAsync(new TilbudKampagne());
+            var kampagne = await facade.GetListAsync(new Kampagne());
 
 
 

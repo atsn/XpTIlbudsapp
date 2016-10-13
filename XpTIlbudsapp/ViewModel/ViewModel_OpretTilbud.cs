@@ -11,10 +11,12 @@ namespace XpTIlbudsapp.ViewModel
 {
     class ViewModel_OpretTilbud
     {
-
+        public bool isrunning { get; set; }
         public ObservableCollection<VareMedTilbud> Tilbudsvarer { get; set; }
         public ObservableCollection<KampagneMedAltInfo> KampagneVare { get; set; }
-        public static ObservableCollection<VareMedTilbud> Inkøbsliste { get; set; } = new ObservableCollection<VareMedTilbud>();
+
+        public static ObservableCollection<VareMedTilbud> Inkøbsliste { get; set; } =
+            new ObservableCollection<VareMedTilbud>();
 
         public VareMedTilbud selectvare { get; set; }
         public KampagneMedAltInfo SelectetKampagne { get; set; }
@@ -25,6 +27,7 @@ namespace XpTIlbudsapp.ViewModel
         public int TotalIndkøbsliste { get; set; }
         public RelayCommand AddtilbudtoinkøbslisteCommand { get; set; }
         public RelayCommand BeregnTotalCommand { get; set; }
+
         public ViewModel_OpretTilbud()
         {
             Tilbudsvarer = new ObservableCollection<VareMedTilbud>();
@@ -36,66 +39,129 @@ namespace XpTIlbudsapp.ViewModel
             BeregnTotalCommand = new RelayCommand(beregntotal);
         }
 
-        public void callsøgetilbud()
+        public async void callsøgetilbud()
         {
-            IEnumerable<VareMedTilbud> Tilbudsvarerlist = Handler.søgetilbud(Søgeord);
-
-            foreach (var vareMedTilbud in Tilbudsvarerlist)
+            isrunning = true;
+            try
             {
-                Tilbudsvarer.Add(vareMedTilbud);
+                IEnumerable<VareMedTilbud> Tilbudsvarerlist = await Handler.søgetilbud(Søgeord);
+                foreach (var vareMedTilbud in Tilbudsvarerlist)
+                {
+                    Tilbudsvarer.Add(vareMedTilbud);
+                }
+                isrunning = false;
+            }
+            catch (Exception e)
+            {
+                MessageDialog message = new MessageDialog(e + e.Message);
+                await message.ShowAsync();
+                isrunning = false;
+            }
+
+
+
+        }
+
+        public async void callsøgekæde()
+        {
+            try
+            {
+                isrunning = true;
+                IEnumerable<VareMedTilbud> Tilbudsvarerlist = await Handler.søgeKæde(Søgeord);
+
+                foreach (var vareMedTilbud in Tilbudsvarerlist)
+                {
+                    Tilbudsvarer.Add(vareMedTilbud);
+                }
+            }
+            catch (Exception e)
+            {
+
+                MessageDialog message = new MessageDialog(e + e.Message);
+                await message.ShowAsync();
+                isrunning = false;
+            }
+
+        }
+
+        public async void callsøgekampagne()
+        {
+            try
+            {
+                isrunning = true;
+                IEnumerable<KampagneMedAltInfo> Tilbudsvarerlist = await Handler.søgekampagne(Søgeord);
+
+                foreach (var vareMedTilbud in Tilbudsvarerlist)
+                {
+                    KampagneVare.Add(vareMedTilbud);
+                }
+            }
+            catch (Exception e)
+            {
+
+                MessageDialog message = new MessageDialog(e + e.Message);
+                await message.ShowAsync();
+                isrunning = false;
+            }
+
+        }
+
+        public async void addtilbudtoinkøbsliste()
+        {
+            try
+            {
+                isrunning = true;
+                if (selectvare != null)
+                {
+                    Inkøbsliste.Add(selectvare);
+                    await Persistency.PersistencyService.SaveNotesAsJsonAsync(Inkøbsliste);
+                }
+
+                else if (SelectetKampagne != null)
+                {
+                    Inkøbsliste.Add(new VareMedTilbud(SelectetKampagne.Pris, SelectetKampagne.Varenavn,
+                        SelectetKampagne.kædenavn, SelectetKampagne.Startdate, SelectetKampagne.SlutDate));
+                    await Persistency.PersistencyService.SaveNotesAsJsonAsync(Inkøbsliste);
+
+                }
+                else
+                {
+                    MessageDialog message = new MessageDialog("Vælg venligst vare");
+                    await message.ShowAsync();
+                }
+                isrunning = false;
+            }
+            catch (Exception e)
+            {
+                MessageDialog message = new MessageDialog(e + e.Message);
+                await message.ShowAsync();
+                isrunning = false;
             }
         }
 
-        public void callsøgekæde()
+        public async void beregntotal()
         {
-            IEnumerable<VareMedTilbud> Tilbudsvarerlist = Handler.søgeKæde(Søgeord);
-
-            foreach (var vareMedTilbud in Tilbudsvarerlist)
+            isrunning = true;
+            try
             {
-                Tilbudsvarer.Add(vareMedTilbud);
+                foreach (var Varer in Inkøbsliste)
+                {
+                    TotalIndkøbsliste = TotalIndkøbsliste + Varer.Pris;
+                }
+                isrunning = false;
             }
+            
+            catch (Exception e)
+            {
+                MessageDialog message = new MessageDialog(e + e.Message);
+                await message.ShowAsync();
+                isrunning = false;
+            }
+
         }
 
-        public void callsøgekampagne()
-        {
-            IEnumerable<KampagneMedAltInfo> Tilbudsvarerlist = Handler.søgekampagne(Søgeord);
-
-            foreach (var vareMedTilbud in Tilbudsvarerlist)
-            {
-                KampagneVare.Add(vareMedTilbud);
-            }
-        }
-
-        public void addtilbudtoinkøbsliste()
-        {
-            if (selectvare != null)
-            {
-                Inkøbsliste.Add(selectvare);
-            }
-
-            else if (SelectetKampagne != null)
-            {
-                Inkøbsliste.Add(new VareMedTilbud(SelectetKampagne.Pris, SelectetKampagne.Varenavn,
-                    SelectetKampagne.kædenavn, SelectetKampagne.Startdate, SelectetKampagne.SlutDate));
-
-
-            }
-            else
-            {
-                MessageDialog message = new MessageDialog("Vælg venligst vare");
-                message.ShowAsync();
-            }
-        }
-
-        public void beregntotal()
-        {
-            foreach (var Varer in Inkøbsliste)
-            {
-                TotalIndkøbsliste = TotalIndkøbsliste + Varer.Pris;
-
-            }
-        }
     }
+}
 }
 
 
