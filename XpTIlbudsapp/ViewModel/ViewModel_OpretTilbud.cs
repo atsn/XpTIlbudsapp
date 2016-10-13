@@ -11,7 +11,7 @@ namespace XpTIlbudsapp.ViewModel
     class ViewModel_OpretTilbud
     {
 
-        public ObservableCollection<VareMedTilbud> Tilbudsvarer  { get; set; }
+        public ObservableCollection<VareMedTilbud> Tilbudsvarer { get; set; }
         public ObservableCollection<KampagneMedAltInfo> KampagneVare { get; set; }
         public RelayCommand SøgKædeCommand { get; set; }
         public RelayCommand SøgKampagneCommand { get; set; }
@@ -61,5 +61,5 @@ namespace XpTIlbudsapp.ViewModel
 
 
 
-    }
 }
+
