@@ -9,7 +9,7 @@ namespace XpTIlbudsapp
 {
     class Vare : IWebUri
     {
-
+        public bool HasBeenNotified { get; set; }
         public int Vare_ID { get; set; }
         public string Navn { get; set; }
 
