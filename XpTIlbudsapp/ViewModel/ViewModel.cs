@@ -277,7 +277,7 @@ namespace XpTIlbudsapp.ViewModel
                 if (SelectoenskeVare != null)
                 {
                     Oenskeliste.Add(SelectoenskeVare);
-                    await Persistency.PersistencyService.SaveNotesAsJsonAsync(Oenskeliste);
+                    await Persistency.PersistencyService2.SaveNotesAsJsonAsync(Oenskeliste);
                 }
                 else
                 {
