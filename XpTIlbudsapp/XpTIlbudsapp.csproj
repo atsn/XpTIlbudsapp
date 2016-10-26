@@ -113,6 +113,9 @@
     <Compile Include="Pages\Kaede.xaml.cs">
       <DependentUpon>Kaede.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\Oenskeliste.xaml.cs">
+      <DependentUpon>Oenskeliste.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\Tilbud.xaml.cs">
       <DependentUpon>Tilbud.xaml</DependentUpon>
     </Compile>
@@ -162,6 +165,10 @@
     <Page Include="Pages\Kaede.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\Oenskeliste.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\Tilbud.xaml">
       <SubType>Designer</SubType>

@@ -20,16 +20,11 @@ namespace XpTIlbudsapp.Pages
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class Indkoeb : Page
+    public sealed partial class Oenskeliste : Page
     {
-        public Indkoeb()
+        public Oenskeliste()
         {
             this.InitializeComponent();
-        }
-
-        private void listView_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
         }
     }
 }

@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using Windows.ApplicationModel.Appointments.AppointmentsProvider;
 using Windows.UI.Popups;
 using XpTIlbudsapp.Annotations;
+using XpTIlbudsapp.Pages;
 
 namespace XpTIlbudsapp.ViewModel
 {
@@ -28,13 +29,30 @@ namespace XpTIlbudsapp.ViewModel
         private RelayCommand _beregnTotalCommand;
         private ObservableCollection<VareMedTilbud> _inkøbslistevis;
         private RelayCommand _loadinkøbslistevisCommand;
+        private ObservableCollection<Vare> _oenskeliste;
+        private Vare _selectoenskeVare;
+        private ObservableCollection<Vare> _oenskelistevis;
         private static ObservableCollection<VareMedTilbud> _inkøbsliste;
+        
 
         public ObservableCollection<VareMedTilbud> Inkøbslistevis
         {
             get { return _inkøbslistevis; }
             set { _inkøbslistevis = value; OnPropertyChanged(); }
         }
+
+        public ObservableCollection<Vare> Oenskelistevis
+        {
+            get { return _oenskelistevis; }
+            set { _oenskelistevis = value; OnPropertyChanged(); }
+        }
+
+        public ObservableCollection<Vare> Oenskeliste
+        {
+            get { return _oenskeliste; }
+            set { _oenskeliste = value; OnPropertyChanged(); }
+        }
+
 
         public bool isrunning
         {
@@ -64,6 +82,12 @@ namespace XpTIlbudsapp.ViewModel
         {
             get { return _selectvare; }
             set { _selectvare = value; OnPropertyChanged(); }
+        }
+
+        public Vare SelectoenskeVare
+        {
+            get { return _selectoenskeVare; }
+            set { _selectoenskeVare = value; OnPropertyChanged(); }
         }
 
         public KampagneMedAltInfo SelectetKampagne
@@ -103,6 +127,8 @@ namespace XpTIlbudsapp.ViewModel
             set { _søgeord = value; OnPropertyChanged(); }
         }
 
+        public RelayCommand LoadOenskelisteCommand { get; set; }
+
         public double TotalIndkøbsliste
         {
             get { return _totalIndkøbsliste; }
@@ -134,6 +160,9 @@ namespace XpTIlbudsapp.ViewModel
             Inkøbsliste = new ObservableCollection<VareMedTilbud>();
             Inkøbslistevis = new ObservableCollection<VareMedTilbud>();
             LoadinkøbslistevisCommand = new RelayCommand(loeadinkøbslistevis);
+            Oenskeliste = new ObservableCollection<Vare>();
+            Oenskelistevis = new ObservableCollection<Vare>();
+            LoadOenskelisteCommand = new RelayCommand(loadoenskelistevis);
         }
 
         public async void callsøgetilbud()
@@ -241,6 +270,30 @@ namespace XpTIlbudsapp.ViewModel
                 isrunning = false;
             }
         }
+        public async void addvaretooenskeliste()
+        {
+            try
+            {
+                isrunning = true;
+                if (SelectoenskeVare != null)
+                {
+                    Oenskeliste.Add(SelectoenskeVare);
+                    await Persistency.PersistencyService.SaveNotesAsJsonAsync(Oenskeliste);
+                }
+                else
+                {
+                    MessageDialog message = new MessageDialog("Vælg venligst vare");
+                    await message.ShowAsync();
+                }
+                isrunning = false;
+            }
+            catch (Exception e)
+            {
+                MessageDialog message = new MessageDialog(e + e.Message);
+                await message.ShowAsync();
+                isrunning = false;
+            }
+        }
 
         public async void LoadInkøbsliste()
         {
@@ -285,6 +338,15 @@ namespace XpTIlbudsapp.ViewModel
             {
                 Inkøbslistevis.Add(vareMedTilbud);
             }
+        }
+
+        public void loadoenskelistevis()
+        {
+            foreach (var vare in Oenskeliste)
+            {
+                Oenskeliste.Add(vare);
+            }
+            
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
