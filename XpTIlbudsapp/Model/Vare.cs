@@ -26,7 +26,7 @@ namespace XpTIlbudsapp
         public Vare()
         {
             ResourceUri = "Vares";
-            VerboseName = "Vare";
+            VerboseName = "VareMedTilbud";
         }
 
     }

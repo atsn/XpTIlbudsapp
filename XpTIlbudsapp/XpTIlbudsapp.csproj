@@ -95,6 +95,7 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Handler\Notification_Handler.cs" />
     <Compile Include="Model\RelayCommand.cs" />
     <Compile Include="Facade\facade.cs" />
     <Compile Include="Handler\Handler.cs" />
@@ -122,6 +123,7 @@
     <Compile Include="Pages\IndkoebsListe.xaml.cs">
       <DependentUpon>IndkoebsListe.xaml</DependentUpon>
     </Compile>
+    <Compile Include="PersistencyService2.cs" />
     <Compile Include="PersistencyService.cs" />
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
