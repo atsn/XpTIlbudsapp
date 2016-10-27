@@ -26,5 +26,10 @@ namespace XpTIlbudsapp.Pages
         {
             this.InitializeComponent();
         }
+
+        private void Tilføj_Copy_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
