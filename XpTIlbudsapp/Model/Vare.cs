@@ -35,5 +35,9 @@ namespace XpTIlbudsapp
             Navn = navn;
         }
 
+        public override string ToString()
+        {
+            return $"Navn: {Navn}";
+        }
     }
 }
