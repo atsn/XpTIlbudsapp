@@ -33,6 +33,7 @@ namespace XpTIlbudsapp.ViewModel
         private Vare _selectoenskeVare;
         private ObservableCollection<Vare> _oenskelistevis;
         private RelayCommand _addVareToOenskelisteCommand;
+        private RelayCommand _loadoenskelistevisCommand;
         private static ObservableCollection<VareMedTilbud> _inkøbsliste;
         private Notification_Handler notification;
 
@@ -103,6 +104,12 @@ namespace XpTIlbudsapp.ViewModel
             set { _loadinkøbslistevisCommand = value; OnPropertyChanged(); }
         }
 
+        public RelayCommand LoadoenskelistevisCommand
+        {
+            get { return _loadoenskelistevisCommand; }
+            set { _loadoenskelistevisCommand = value; }
+        }
+
         public RelayCommand SøgKædeCommand
         {
             get { return _søgKædeCommand; }
@@ -167,7 +174,6 @@ namespace XpTIlbudsapp.ViewModel
             Inkøbslistevis = new ObservableCollection<VareMedTilbud>();
             LoadinkøbslistevisCommand = new RelayCommand(loeadinkøbslistevis);
             Oenskelistevis = new ObservableCollection<Vare>();
-            Oenskeliste = new ObservableCollection<Vare>();
             LoadOenskelisteCommand = new RelayCommand(loadoenskelistevis);
             AddVareToOenskelisteCommand = new RelayCommand(addvaretooenskeliste);
             notification = Notification_Handler.Instance;
