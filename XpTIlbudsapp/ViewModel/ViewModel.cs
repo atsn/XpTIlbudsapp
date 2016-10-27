@@ -52,7 +52,7 @@ namespace XpTIlbudsapp.ViewModel
         public static ObservableCollection<Vare> Oenskeliste
         {
             get { return _oenskeliste; }
-            set { _oenskeliste = value; OnPropertyChanged(); }
+            set { _oenskeliste = value; }
         }
 
         public bool isrunning
