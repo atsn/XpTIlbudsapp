@@ -29,7 +29,7 @@ namespace XpTIlbudsapp.ViewModel
         private RelayCommand _beregnTotalCommand;
         private ObservableCollection<VareMedTilbud> _inkøbslistevis;
         private RelayCommand _loadinkøbslistevisCommand;
-        private ObservableCollection<Vare> _oenskeliste;
+        private static ObservableCollection<Vare> _oenskeliste;
         private Vare _selectoenskeVare;
         private ObservableCollection<Vare> _oenskelistevis;
         private RelayCommand _addVareToOenskelisteCommand;
@@ -49,7 +49,7 @@ namespace XpTIlbudsapp.ViewModel
             set { _oenskelistevis = value; OnPropertyChanged(); }
         }
 
-        public ObservableCollection<Vare> Oenskeliste
+        public static ObservableCollection<Vare> Oenskeliste
         {
             get { return _oenskeliste; }
             set { _oenskeliste = value; OnPropertyChanged(); }
