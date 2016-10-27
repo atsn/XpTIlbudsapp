@@ -32,6 +32,7 @@ namespace XpTIlbudsapp.ViewModel
         private ObservableCollection<Vare> _oenskeliste;
         private Vare _selectoenskeVare;
         private ObservableCollection<Vare> _oenskelistevis;
+        private RelayCommand _addVareToOenskelisteCommand;
         private static ObservableCollection<VareMedTilbud> _inkøbsliste;
         
 
@@ -147,6 +148,12 @@ namespace XpTIlbudsapp.ViewModel
             set { _beregnTotalCommand = value; OnPropertyChanged(); }
         }
 
+        public RelayCommand AddVareToOenskelisteCommand
+        {
+            get { return _addVareToOenskelisteCommand; }
+            set { _addVareToOenskelisteCommand = value; }
+        }
+
         public ViewModel()
         {
             Tilbudsvarer = new ObservableCollection<VareMedTilbud>();
@@ -162,6 +169,7 @@ namespace XpTIlbudsapp.ViewModel
             Oenskeliste = new ObservableCollection<Vare>();
             Oenskelistevis = new ObservableCollection<Vare>();
             LoadOenskelisteCommand = new RelayCommand(loadoenskelistevis);
+            AddVareToOenskelisteCommand = new RelayCommand(addvaretooenskeliste);
         }
 
         public async void callsøgetilbud()
