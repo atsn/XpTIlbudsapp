@@ -14,6 +14,11 @@ namespace XpTIlbudsapp
         public DateTime Startdate { get; set; }
         public DateTime SlutDate { get; set; }
         public int Vare_Id { get; set; }
+
+        public VareMedTilbud()
+        {
+            
+        }
         public VareMedTilbud(int pris, string varenavn, string kædeNavn, DateTime startdate, DateTime slutDate)
         {
             Pris = pris;

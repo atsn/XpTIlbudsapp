@@ -33,9 +33,8 @@ namespace XpTIlbudsapp.ViewModel
         private Vare _selectoenskeVare;
         private ObservableCollection<Vare> _oenskelistevis;
         private RelayCommand _addVareToOenskelisteCommand;
-        private RelayCommand _loadoenskelistevisCommand;
         private static ObservableCollection<VareMedTilbud> _inkøbsliste;
-       
+        private Notification_Handler notification;
 
         public ObservableCollection<VareMedTilbud> Inkøbslistevis
         {
@@ -104,12 +103,6 @@ namespace XpTIlbudsapp.ViewModel
             set { _loadinkøbslistevisCommand = value; OnPropertyChanged(); }
         }
 
-        public RelayCommand LoadoenskelistevisCommand
-        {
-            get { return _loadoenskelistevisCommand; }
-            set { _loadoenskelistevisCommand = value; }
-        }
-
         public RelayCommand SøgKædeCommand
         {
             get { return _søgKædeCommand; }
@@ -173,11 +166,11 @@ namespace XpTIlbudsapp.ViewModel
             LoadInkøbslisteCommand = new RelayCommand(LoadInkøbsliste);
             Inkøbslistevis = new ObservableCollection<VareMedTilbud>();
             LoadinkøbslistevisCommand = new RelayCommand(loeadinkøbslistevis);
-            Oenskeliste = new ObservableCollection<Vare>();
             Oenskelistevis = new ObservableCollection<Vare>();
-            LoadOenskelisteCommand = new RelayCommand(l);
-            LoadoenskelistevisCommand = new RelayCommand(loadoenskelistevis);
+            Oenskeliste = new ObservableCollection<Vare>();
+            LoadOenskelisteCommand = new RelayCommand(loadoenskelistevis);
             AddVareToOenskelisteCommand = new RelayCommand(addvaretooenskeliste);
+            notification = Notification_Handler.Instance;
         }
 
         public async void callsøgetilbud()
@@ -292,7 +285,7 @@ namespace XpTIlbudsapp.ViewModel
                 isrunning = true;
                 if (selectvare != null)
                 {
-                    Oenskeliste.Add(new Vare(selectvare.Vare_Id,selectvare.Varenavn));
+                    Oenskeliste.Add(new Vare(selectvare.Vare_Id, selectvare.Varenavn));
                     await Persistency.PersistencyService2.SaveNotesAsJsonAsync(Oenskeliste);
                 }
                 else
@@ -318,7 +311,26 @@ namespace XpTIlbudsapp.ViewModel
                 Inkøbsliste = await Persistency.PersistencyService.LoadNotesFromJsonAsync();
                 if (Inkøbsliste == null)
                 {
-                  Inkøbsliste = new ObservableCollection<VareMedTilbud>();  
+                    Inkøbsliste = new ObservableCollection<VareMedTilbud>();
+                }
+                isrunning = false;
+            }
+            catch (Exception e)
+            {
+                MessageDialog message = new MessageDialog(e + e.Message);
+                await message.ShowAsync();
+                isrunning = false;
+            }
+        }
+        public async void LoadOenskeliste()
+        {
+            try
+            {
+                isrunning = true;
+                Oenskeliste = await Persistency.PersistencyService2.LoadNotesFromJsonAsync();
+                if (Oenskeliste == null)
+                {
+                    Oenskeliste = new ObservableCollection<Vare>();
                 }
                 isrunning = false;
             }
@@ -353,7 +365,7 @@ namespace XpTIlbudsapp.ViewModel
 
         public void loeadinkøbslistevis()
         {
-         
+
             foreach (var vareMedTilbud in Inkøbsliste)
             {
                 Inkøbslistevis.Add(vareMedTilbud);
@@ -366,7 +378,7 @@ namespace XpTIlbudsapp.ViewModel
             {
                 Oenskelistevis.Add(vare);
             }
-            
+
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
