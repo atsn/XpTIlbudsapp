@@ -89,8 +89,10 @@ namespace XpTIlbudsapp
 
                                 vare.HasBeenNotified = true;
 
-
+                               await Persistency.PersistencyService2.SaveNotesAsJsonAsync(Ønskeliste as ObservableCollection<Vare>);
                             }
+
+                            
 
                         }
 

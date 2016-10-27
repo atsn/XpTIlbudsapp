@@ -16,6 +16,7 @@ namespace XpTIlbudsapp.Persistency
 
     class PersistencyService2
     {
+        private static bool hasbeenshown = false;
         private static string JsonFileName = "NotesAsJson2.dat";
 
         public static async Task<string> SaveNotesAsJsonAsync(ObservableCollection<Vare> notes)
@@ -53,7 +54,12 @@ namespace XpTIlbudsapp.Persistency
             }
             catch (FileNotFoundException ex)
             {
-                MessageDialogHelper.Show("Din inkøbsliste er tom og vil ikke vise nogle vare før du tiæføjer den via vare eller kædesøgning", "Tom Ønskeliste");
+                if (hasbeenshown == false)
+                {
+                    MessageDialogHelper.Show("Din inkøbsliste er tom og vil ikke vise nogle vare før du tiæføjer den via vare eller kædesøgning", "Tom Ønskeliste");
+                    hasbeenshown = true;
+                }
+               
                 return null;
             }
         }
