@@ -7,6 +7,11 @@
     xmlns:ViewModel="using:XpTIlbudsapp.ViewModel" xmlns:Interactivity="using:Microsoft.Xaml.Interactivity" xmlns:Core="using:Microsoft.Xaml.Interactions.Core"
     x:Class="XpTIlbudsapp.Pages.Oenskeliste"
     mc:Ignorable="d">
+    <Interactivity:Interaction.Behaviors>
+        <Core:EventTriggerBehavior EventName="Loaded">
+            <Core:InvokeCommandAction Command="{Binding LoadOenskelisteCommand}"/>
+        </Core:EventTriggerBehavior>
+    </Interactivity:Interaction.Behaviors>
 
     <Page.DataContext>
         <ViewModel:ViewModel/>
