@@ -308,6 +308,10 @@ namespace XpTIlbudsapp.ViewModel
             {
                 isrunning = true;
                 Inkøbsliste = await Persistency.PersistencyService.LoadNotesFromJsonAsync();
+                if (Inkøbsliste == null)
+                {
+                  Inkøbsliste = new ObservableCollection<VareMedTilbud>();  
+                }
                 isrunning = false;
             }
             catch (Exception e)

@@ -12,11 +12,10 @@ namespace XpTIlbudsapp
         public bool HasBeenNotified { get; set; }
         public int Vare_ID { get; set; }
         public string Navn { get; set; }
-
         public string ResourceUri { get; }
         public string VerboseName { get; }
 
-        public Vare(string navn) :this()
+        public Vare(string navn) : this()
         {
 
             Navn = navn;
