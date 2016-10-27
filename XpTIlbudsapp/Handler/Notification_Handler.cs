@@ -59,42 +59,46 @@ namespace XpTIlbudsapp
             {
                 Ønskeliste = await Persistency.PersistencyService2.LoadNotesFromJsonAsync();
 
-
-
-                var tilbud = await facade.GetListAsync(new Tilbud());
-
-                var kaede = await facade.GetListAsync(new Kaede());
-
-                var tilbudmedkaede = from s in kaede
-                                     join t in tilbud on s.Kaede_ID equals t.Fk_Kaede_ID
-                                     select
-                                     new { s.Navn, t.Fk_Vare_ID, t.Fk_Kaede_ID, t.Pris, t.Slut_Dato, t.Start_Dato };
-
-
-                foreach (var vare in Ønskeliste)
+                if (Ønskeliste != null)
                 {
 
-                    foreach (var vare1 in tilbudmedkaede)
+                    var tilbud = await facade.GetListAsync(new Tilbud());
+
+                    var kaede = await facade.GetListAsync(new Kaede());
+
+                    var tilbudmedkaede = from s in kaede
+                                         join t in tilbud on s.Kaede_ID equals t.Fk_Kaede_ID
+                                         select
+                                         new { s.Navn, t.Fk_Vare_ID, t.Fk_Kaede_ID, t.Pris, t.Slut_Dato, t.Start_Dato };
+
+
+                    foreach (var vare in Ønskeliste)
                     {
 
-
-                        if (vare1.Fk_Vare_ID.Equals(vare.Vare_ID) && vare.HasBeenNotified.Equals(false))
+                        foreach (var vare1 in tilbudmedkaede)
                         {
 
 
+                            if (vare1.Fk_Vare_ID.Equals(vare.Vare_ID) && vare.HasBeenNotified.Equals(false))
+                            {
 
-                            MessageDialog message = new MessageDialog("Vare er nu på tilbud: " + vare.Navn + vare1.Pris + vare1.Navn);
-                            await message.ShowAsync();
 
-                            vare.HasBeenNotified = true;
 
+                                MessageDialog message = new MessageDialog("Vare er nu på tilbud: " + vare.Navn + vare1.Pris + vare1.Navn);
+                                await message.ShowAsync();
+
+                                vare.HasBeenNotified = true;
+
+
+                            }
 
                         }
 
-                    }
 
-                    
+                    }
                 }
+
+
 
                await Task.Delay(300000);
             }
