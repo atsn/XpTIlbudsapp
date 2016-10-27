@@ -54,7 +54,6 @@ namespace XpTIlbudsapp.ViewModel
             set { _oenskeliste = value; OnPropertyChanged(); }
         }
 
-
         public bool isrunning
         {
             get { return _isrunning; }
