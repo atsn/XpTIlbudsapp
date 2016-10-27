@@ -58,10 +58,12 @@ namespace XpTIlbudsapp.Persistency
                 {
                     MessageDialogHelper.Show("Din inkøbsliste er tom og vil ikke vise nogle vare før du tiæføjer den via vare eller kædesøgning","Tom Inkøbsliste");
                     hasbeenshown = true;
-                    return null;
+                    
                     
                 }
-               
+                return null;
+
+
             }
         }
 
