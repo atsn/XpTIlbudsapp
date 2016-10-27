@@ -48,6 +48,13 @@
             </Interactivity:Interaction.Behaviors>
         </Button>
         <ProgressRing HorizontalAlignment="Stretch" Margin="122,253,122,271" VerticalAlignment="Stretch" d:LayoutOverrides="LeftPosition, RightPosition, TopPosition, BottomPosition" IsActive="{Binding isrunning}"/>
+        <Button x:Name="Indkoeb_Copy" Content="Ønskeliste" Margin="0,141,45,0" VerticalAlignment="Top" HorizontalAlignment="Right" Width="120">
+            <Interactivity:Interaction.Behaviors>
+                <Core:EventTriggerBehavior EventName="Click">
+                    <Core:NavigateToPageAction TargetPage="XpTIlbudsapp.Pages.Oenskeliste"/>
+                </Core:EventTriggerBehavior>
+            </Interactivity:Interaction.Behaviors>
+        </Button>
 
     </Grid>
 </Page>

@@ -31,8 +31,8 @@
             </Interactivity:Interaction.Behaviors>
         </Button>
         <ProgressRing HorizontalAlignment="Stretch" Margin="122,253,122,271" VerticalAlignment="Stretch" d:LayoutOverrides="LeftPosition, RightPosition, TopPosition, BottomPosition" IsActive="{Binding isrunning}"/>
-        <Button x:Name="Søg_Copy" Content="Indkøbslist" VerticalAlignment="Bottom" Width="92" HorizontalAlignment="Right" Margin="0,0,244,25" Background="#FF898989" Command="{Binding AddtilbudtoinkøbslisteCommand}"/>
-        <Button x:Name="Søg_Copy1" Content="Ønskelist" VerticalAlignment="Bottom" Width="92" HorizontalAlignment="Right" Margin="0,0,149,25" Background="#FF898989" Command="{Binding AddVareToOenskelisteCommand}"/>
+        <Button x:Name="Søg_Copy" Content="Indkøbslist" VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="24,0,0,25" Background="#FF898989" Command="{Binding AddtilbudtoinkøbslisteCommand}" Width="92"/>
+        <Button x:Name="Søg_Copy1" Content="Ønskelist" VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="119,0,0,25" Background="#FF898989" Command="{Binding AddVareToOenskelisteCommand}" Width="92"/>
 
     </Grid>
 </Page>
