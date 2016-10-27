@@ -34,7 +34,7 @@ namespace XpTIlbudsapp.ViewModel
         private ObservableCollection<Vare> _oenskelistevis;
         private RelayCommand _addVareToOenskelisteCommand;
         private static ObservableCollection<VareMedTilbud> _inkøbsliste;
-       
+        private Notification_Handler notification;
 
         public ObservableCollection<VareMedTilbud> Inkøbslistevis
         {
@@ -170,6 +170,7 @@ namespace XpTIlbudsapp.ViewModel
             Oenskelistevis = new ObservableCollection<Vare>();
             LoadOenskelisteCommand = new RelayCommand(loadoenskelistevis);
             AddVareToOenskelisteCommand = new RelayCommand(addvaretooenskeliste);
+            notification = Notification_Handler.Instance;
         }
 
         public async void callsøgetilbud()
