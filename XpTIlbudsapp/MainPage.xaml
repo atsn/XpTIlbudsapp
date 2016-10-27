@@ -12,6 +12,9 @@
         <Core:EventTriggerBehavior EventName="Loaded">
             <Core:InvokeCommandAction Command="{Binding LoadInkøbslisteCommand}"/>
         </Core:EventTriggerBehavior>
+        <Core:EventTriggerBehavior EventName="Loaded">
+            <Core:InvokeCommandAction Command="{Binding LoadOenskelisteCommand}"/>
+        </Core:EventTriggerBehavior>
     </Interactivity:Interaction.Behaviors>
     <Page.DataContext>
         <ViewModel:ViewModel/>

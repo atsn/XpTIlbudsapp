@@ -9,7 +9,7 @@
     mc:Ignorable="d">
     <Interactivity:Interaction.Behaviors>
         <Core:EventTriggerBehavior EventName="Loaded">
-            <Core:InvokeCommandAction Command="{Binding LoadOenskelisteCommand}"/>
+            <Core:InvokeCommandAction Command="{Binding LoadoenskelistevisCommand}"/>
         </Core:EventTriggerBehavior>
     </Interactivity:Interaction.Behaviors>
 

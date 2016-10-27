@@ -174,7 +174,8 @@ namespace XpTIlbudsapp.ViewModel
             Inkøbslistevis = new ObservableCollection<VareMedTilbud>();
             LoadinkøbslistevisCommand = new RelayCommand(loeadinkøbslistevis);
             Oenskelistevis = new ObservableCollection<Vare>();
-            LoadOenskelisteCommand = new RelayCommand(loadoenskelistevis);
+            LoadOenskelisteCommand = new RelayCommand(LoadOenskeliste);
+            LoadoenskelistevisCommand = new RelayCommand(loadoenskelistevis);
             AddVareToOenskelisteCommand = new RelayCommand(addvaretooenskeliste);
             notification = Notification_Handler.Instance;
         }
