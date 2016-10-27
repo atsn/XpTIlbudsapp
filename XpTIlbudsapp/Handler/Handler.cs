@@ -46,7 +46,7 @@ namespace XpTIlbudsapp
                 var tilbudslistemedkæde = from t in tilbudsliste
                                           join k in kæde on t.Fk_Kaede_ID equals k.Kaede_ID
                                           where t.Start_Dato < DateTime.Now && t.Slut_Dato > DateTime.Now
-                                          select new VareMedTilbud(t.Pris, t.varenavn, k.Navn, t.Start_Dato, t.Slut_Dato);
+                                          select new VareMedTilbud(t.Pris, t.varenavn, k.Navn, t.Start_Dato, t.Slut_Dato,t.Fk_Vare_ID);
 
                 return tilbudslistemedkæde;
 
@@ -94,7 +94,7 @@ namespace XpTIlbudsapp
 
                 var tilbudliste2 = from s in tilbudsliste
                                    join v in Vare on s.Fk_Vare_ID equals v.Vare_ID
-                                   select new VareMedTilbud(s.Pris, v.Navn, s.kædenavn, s.Start_Dato, s.Slut_Dato);
+                                   select new VareMedTilbud(s.Pris, v.Navn, s.kædenavn, s.Start_Dato, s.Slut_Dato,s.Fk_Vare_ID);
 
 
 

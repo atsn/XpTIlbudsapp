@@ -13,7 +13,7 @@ namespace XpTIlbudsapp
         public string KædeNavn { get; set; }
         public DateTime Startdate { get; set; }
         public DateTime SlutDate { get; set; }
-        
+        public int Vare_Id { get; set; }
         public VareMedTilbud(int pris, string varenavn, string kædeNavn, DateTime startdate, DateTime slutDate)
         {
             Pris = pris;
@@ -21,6 +21,16 @@ namespace XpTIlbudsapp
             KædeNavn = kædeNavn;
             Startdate = startdate;
             SlutDate = slutDate;
+        }
+
+        public VareMedTilbud(int pris, string varenavn, string kædeNavn, DateTime startdate, DateTime slutDate, int vareId)
+        {
+            Pris = pris;
+            Varenavn = varenavn;
+            KædeNavn = kædeNavn;
+            Startdate = startdate;
+            SlutDate = slutDate;
+            Vare_Id = vareId;
         }
 
         public override string ToString()

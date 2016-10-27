@@ -22,7 +22,7 @@ namespace XpTIlbudsapp.Persistency
         public static async Task<string> SaveNotesAsJsonAsync(ObservableCollection<VareMedTilbud> notes)
         {
             string notesJsonString = JsonConvert.SerializeObject(notes);
-           string c = await SerializeNotesFileAsync(notesJsonString, JsonFileName);
+            string c = await SerializeNotesFileAsync(notesJsonString, JsonFileName);
             return c;
         }
 
@@ -30,21 +30,21 @@ namespace XpTIlbudsapp.Persistency
         {
             string notesJsonString = await DeserializeNotesFileAsync(JsonFileName);
             if (notesJsonString != null)
-                return (ObservableCollection<VareMedTilbud>) JsonConvert.DeserializeObject(notesJsonString, typeof (ObservableCollection<VareMedTilbud>));
+                return (ObservableCollection<VareMedTilbud>)JsonConvert.DeserializeObject(notesJsonString, typeof(ObservableCollection<VareMedTilbud>));
             return null;
         }
 
-       
+
 
         private static async Task<string> SerializeNotesFileAsync(string notesJsonString, string fileName)
         {
             StorageFile localFile = await ApplicationData.Current.LocalFolder.CreateFileAsync(fileName, CreationCollisionOption.ReplaceExisting);
             await FileIO.WriteTextAsync(localFile, notesJsonString);
             string c;
-            return  c = notesJsonString;
+            return c = notesJsonString;
         }
 
-        
+
         private static async Task<string> DeserializeNotesFileAsync(string fileName)
         {
             try
@@ -56,10 +56,10 @@ namespace XpTIlbudsapp.Persistency
             {
                 if (hasbeenshown == false)
                 {
-                    MessageDialogHelper.Show("Din inkøbsliste er tom og vil ikke vise nogle vare før du tiæføjer den via vare eller kædesøgning","Tom Inkøbsliste");
+                    MessageDialogHelper.Show("Din inkøbsliste er tom og vil ikke vise nogle vare før du tiæføjer den via vare eller kædesøgning", "Tom Inkøbsliste");
                     hasbeenshown = true;
-                    
-                    
+
+
                 }
                 return null;
 

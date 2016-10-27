@@ -34,7 +34,7 @@ namespace XpTIlbudsapp.ViewModel
         private ObservableCollection<Vare> _oenskelistevis;
         private RelayCommand _addVareToOenskelisteCommand;
         private static ObservableCollection<VareMedTilbud> _inkøbsliste;
-        
+       
 
         public ObservableCollection<VareMedTilbud> Inkøbslistevis
         {
@@ -282,9 +282,9 @@ namespace XpTIlbudsapp.ViewModel
             try
             {
                 isrunning = true;
-                if (SelectoenskeVare != null)
+                if (selectvare != null)
                 {
-                    Oenskeliste.Add(SelectoenskeVare);
+                    Oenskeliste.Add(new Vare(selectvare.Vare_Id,selectvare.Varenavn));
                     await Persistency.PersistencyService2.SaveNotesAsJsonAsync(Oenskeliste);
                 }
                 else
@@ -356,7 +356,7 @@ namespace XpTIlbudsapp.ViewModel
         {
             foreach (var vare in Oenskeliste)
             {
-                Oenskeliste.Add(vare);
+                Oenskelistevis.Add(vare);
             }
             
         }
