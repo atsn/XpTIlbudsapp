@@ -25,7 +25,14 @@ namespace XpTIlbudsapp
         public Vare()
         {
             ResourceUri = "Vares";
-            VerboseName = "VareMedTilbud";
+            VerboseName = "Vare";
+        }
+
+        public Vare(int vareId, string navn )
+        {
+
+            Vare_ID = vareId;
+            Navn = navn;
         }
 
     }
