@@ -16,6 +16,7 @@ namespace XpTIlbudsapp.Persistency
 
     class PersistencyService
     {
+        private static bool hasbeenshown = false;
         private static string JsonFileName = "NotesAsJson.dat";
 
         public static async Task<string> SaveNotesAsJsonAsync(ObservableCollection<VareMedTilbud> notes)
@@ -53,8 +54,16 @@ namespace XpTIlbudsapp.Persistency
             }
             catch (FileNotFoundException ex)
             {
-                MessageDialogHelper.Show("Loading for the first time? - Try Add and Save some Notes before trying to Save for the first time", "File not Found");
+                if (hasbeenshown == false)
+                {
+                    MessageDialogHelper.Show("Din inkøbsliste er tom og vil ikke vise nogle vare før du tiæføjer den via vare eller kædesøgning","Tom Inkøbsliste");
+                    hasbeenshown = true;
+                    
+                    
+                }
                 return null;
+
+
             }
         }
 
