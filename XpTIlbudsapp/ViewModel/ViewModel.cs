@@ -27,6 +27,19 @@ namespace XpTIlbudsapp.ViewModel
         private double _totalIndkøbsliste;
         private RelayCommand _addtilbudtoinkøbslisteCommand;
         private RelayCommand _beregnTotalCommand;
+
+        public RelayCommand Removefrominkøbslistecommand
+        {
+            get { return _removefrominkøbslistecommand; }
+            set { _removefrominkøbslistecommand = value; OnPropertyChanged(); }
+        }
+
+        public RelayCommand RemoveFromØnskelisteCommand
+        {
+            get { return _removeFromØnskelisteCommand; }
+            set { _removeFromØnskelisteCommand = value; : OnPropertyChanged(); }
+        }
+
         private ObservableCollection<VareMedTilbud> _inkøbslistevis;
         private RelayCommand _loadinkøbslistevisCommand;
         private static ObservableCollection<Vare> _oenskeliste;
@@ -37,6 +50,8 @@ namespace XpTIlbudsapp.ViewModel
         private static ObservableCollection<VareMedTilbud> _inkøbsliste;
         private Notification_Handler notification;
         private Vare _vare;
+        private RelayCommand _removefrominkøbslistecommand;
+        private RelayCommand _removeFromØnskelisteCommand;
 
         public Vare Vare
         {
