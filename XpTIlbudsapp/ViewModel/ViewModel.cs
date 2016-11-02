@@ -36,6 +36,13 @@ namespace XpTIlbudsapp.ViewModel
         private RelayCommand _loadoenskelistevisCommand;
         private static ObservableCollection<VareMedTilbud> _inkøbsliste;
         private Notification_Handler notification;
+        private Vare _vare;
+
+        public Vare Vare
+        {
+            get { return _vare; }
+            set { _vare = value; OnPropertyChanged(); }
+        }
 
         public ObservableCollection<VareMedTilbud> Inkøbslistevis
         {
@@ -284,6 +291,41 @@ namespace XpTIlbudsapp.ViewModel
                 isrunning = false;
             }
         }
+
+        public async void removefrominkøbsliste()
+        {
+            try
+            {
+                isrunning = true;
+                if (selectvare != null)
+                {
+                    Inkøbsliste = await Persistency.PersistencyService.LoadNotesFromJsonAsync();
+
+                    foreach (var vare in Inkøbsliste)
+                    {
+                        if (vare == selectvare)
+                        {
+                            Inkøbsliste.Remove(vare);
+                            await Persistency.PersistencyService.SaveNotesAsJsonAsync(Inkøbsliste);
+                            LoadInkøbsliste();
+                        }
+
+                    }
+                }
+                else
+                {
+                    MessageDialog message = new MessageDialog("Vælg venligst vare");
+                    await message.ShowAsync();
+                }
+                isrunning = false;
+            }
+            catch (Exception e)
+            {
+                MessageDialog message = new MessageDialog(e + e.Message);
+                await message.ShowAsync();
+                isrunning = false;
+            }
+        }
         public async void addvaretooenskeliste()
         {
             try
@@ -293,6 +335,43 @@ namespace XpTIlbudsapp.ViewModel
                 {
                     Oenskeliste.Add(new Vare(selectvare.Vare_Id, selectvare.Varenavn));
                     await Persistency.PersistencyService2.SaveNotesAsJsonAsync(Oenskeliste);
+                }
+                else
+                {
+                    MessageDialog message = new MessageDialog("Vælg venligst vare");
+                    await message.ShowAsync();
+                }
+                isrunning = false;
+            }
+            catch (Exception e)
+            {
+                MessageDialog message = new MessageDialog(e + e.Message);
+                await message.ShowAsync();
+                isrunning = false;
+            }
+        }
+
+        public async void removefromønskeliste()
+        {
+            try
+            {
+                isrunning = true;
+                if (selectvare != null)
+                {
+                    Oenskeliste = await Persistency.PersistencyService2.LoadNotesFromJsonAsync();
+
+                    foreach (var vare in Oenskeliste)
+                    {
+                        if (vare.Vare_ID == selectvare.Vare_Id)
+                        {
+                            Oenskeliste.Remove(vare);
+                            await Persistency.PersistencyService2.SaveNotesAsJsonAsync(Oenskeliste);
+                            loadoenskelistevis();
+                        }
+                            
+                    }
+                   
+                    
                 }
                 else
                 {
