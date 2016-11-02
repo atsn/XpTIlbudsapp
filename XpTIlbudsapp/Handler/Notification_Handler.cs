@@ -102,7 +102,8 @@ namespace XpTIlbudsapp
 
 
 
-               await Task.Delay(300000);
+            //   await Task.Delay(300000);
+                await Task.Delay(30000);
             }
            
 
