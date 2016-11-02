@@ -37,7 +37,9 @@ namespace XpTIlbudsapp.ViewModel
         public RelayCommand RemoveFromØnskelisteCommand
         {
             get { return _removeFromØnskelisteCommand; }
-            set { _removeFromØnskelisteCommand = value; : OnPropertyChanged(); }
+            set
+            {
+                _removeFromØnskelisteCommand = value; OnPropertyChanged(); }
         }
 
         private ObservableCollection<VareMedTilbud> _inkøbslistevis;
