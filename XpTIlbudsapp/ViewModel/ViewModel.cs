@@ -322,7 +322,7 @@ namespace XpTIlbudsapp.ViewModel
 
                     foreach (var vare in Inkøbsliste)
                     {
-                        if (vare == selectvare)
+                        if (vare.Vare_Id == selectvare.Vare_Id)
                         {
                             Inkøbsliste.Remove(vare);
                             await Persistency.PersistencyService.SaveNotesAsJsonAsync(Inkøbsliste);
@@ -381,7 +381,7 @@ namespace XpTIlbudsapp.ViewModel
 
                     foreach (var vare in Oenskeliste)
                     {
-                        if (vare == Vare)
+                        if (vare.Vare_ID == Vare.Vare_ID)
                         {
                             Oenskeliste.Remove(vare);
                             await Persistency.PersistencyService2.SaveNotesAsJsonAsync(Oenskeliste);
