@@ -200,6 +200,8 @@ namespace XpTIlbudsapp.ViewModel
             LoadOenskelisteCommand = new RelayCommand(LoadOenskeliste);
             LoadoenskelistevisCommand = new RelayCommand(loadoenskelistevis);
             AddVareToOenskelisteCommand = new RelayCommand(addvaretooenskeliste);
+            RemoveFromØnskelisteCommand = new RelayCommand(removefromønskeliste);
+            Removefrominkøbslistecommand = new RelayCommand(removefrominkøbsliste);
             notification = Notification_Handler.Instance;
         }
 
