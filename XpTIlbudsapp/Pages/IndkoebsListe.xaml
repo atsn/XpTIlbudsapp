@@ -26,6 +26,7 @@
             <ListView x:Name="listView" Margin="24,77,26,0" Width="310" Height="500" Background="#FF898989" VerticalAlignment="Top" ItemsSource="{Binding Inkøbslistevis, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" SelectionChanged="listView_SelectionChanged"/>
             <TextBlock x:Name="textBlock" Margin="0,0,26,31" TextWrapping="Wrap" Text="{Binding TotalIndkøbsliste}" VerticalAlignment="Bottom" FocusVisualSecondaryBrush="#99FFFFFF" HorizontalAlignment="Right"/>
             <TextBlock x:Name="textBlock1" Height="62" Margin="68,10,10,0" TextWrapping="Wrap" VerticalAlignment="Top" Text="Indkøbsliste" FontSize="48" d:LayoutOverrides="LeftPosition, RightPosition"/>
+            <Button x:Name="button1" Content="Slet" HorizontalAlignment="Left" Margin="24,0,0,26" VerticalAlignment="Bottom"/>
 
         </Grid>
         <Button x:Name="button" Margin="24,20,0,0" Style="{StaticResource NavigationBackButtonNormalStyle}" VerticalAlignment="Top" d:LayoutOverrides="Width, Height">
