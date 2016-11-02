@@ -362,7 +362,7 @@ namespace XpTIlbudsapp.ViewModel
 
                     foreach (var vare in Oenskeliste)
                     {
-                        if (vare.Vare_ID == selectvare.Vare_Id)
+                        if (vare == Vare)
                         {
                             Oenskeliste.Remove(vare);
                             await Persistency.PersistencyService2.SaveNotesAsJsonAsync(Oenskeliste);
